@@ -11,8 +11,8 @@
 + Có [XamPP](https://www.apachefriends.org/download.html)
 + Tạo database tương ứng với dữ liệu trong file .env, [Xem Thêm](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/connect-your-database-typescript-mysql)
 
-## Khởi đàu
-Sau khi clone dự án về mở terminal rồi gõ lệnh sau:
+## Khởi đầu
+Sau khi clone dự án và setup môi trường xong xuôi, mở terminal ngay folder gốc của dự án rồi gõ lệnh sau:
 ```bash
 bun i
 ```
