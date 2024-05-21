@@ -1,0 +1,61 @@
+.bg-navbar-black-blue {
+    background-color: rgb(32, 108, 196);
+}
+
+.font-semibold{
+    font-weight: 700;
+}
+
+.rounded-md	{
+    border-radius: 0.375rem; /* 6px */
+}
+
+.pxtw-2{
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+}
+
+.outline-none{
+    outline: none!important;
+    shadow: none!important;
+}
+
+.hover-navbar-item:hover {
+    background: rgb(33, 106, 157);
+}
+
+.focus-navbar-item:focus {
+    background: rgb(33, 106, 157);
+}
+
+.text-sm{
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.text-base{
+    font-size: 1rem;
+    line-height: 1.75rem;
+}
+
+.text-gray-500{
+    color: rgb(107 114 128);
+}
+
+#tableDiv{
+    min-height: 470px;
+}
+
+.rounded-left-0{
+    border-top-left-radius: 0;
+}
+
+.rounded-right-0{
+    border-top-right-radius: 0;
+}
+
+.rounded-x-0 {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+}
+

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý bệnh viện</title>
+    <link rel="stylesheet" href="./globalout.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    
+    <!-- Container -->
+    <div 
+    class="w-screen h-screen flex flex-col"
+    >
+
+        <!-- NavBar -->
+        <div
+        class="basis-2/12 bg-green-400 flex justify-end align-middle"
+        >
+        <!-- button Group -->
+        <div class="h-full mr-6 grid place-content-center">
+            <button
+            class="px-6 py-3 rounded-lg bg-blue-700 text-slate-100 hover:bg-blue-300 hover:text-gray-600"
+            id="button-open-nhan-vien"
+            >
+             <div 
+             class="w-full h-full flex gap-2 font-bold "
+             >
+             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 translate-y-[2px]">
+                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+               </svg>
+               
+                   <span>Thêm</span>
+             </div>
+ 
+               
+            </button> 
+        </div>
+        </div>
+
+        <!-- Body -->
+        <div
+        class="basis-10/12 bg-yellow-400"
+        >
+        Body
+        </div>
+
+
+        <!-- Khi nhấp vào nút thêm thì script của JS sẽ tự động bỏ class "hidden" của tailwind và class "flex" sẽ hoạt đông -->
+        <div id="popup-nhan-vien" class="fixed inset-0 px-4 bg-gray-900 bg-opacity-50 flex items-center justify-center hidden">
+            <div class="bg-white p-6 h-[600px] w-full rounded-lg flex flex-col divide-y-4 xl:max-w-[1300px]">
+                
+                <!-- Top Popup -->
+                <div class="basis-1/12 py-3 flex justify-between font-semibold">
+                    <h2 class="text-gray-700">Thêm nhân viên</h2>
+
+                    <button
+                    id="button-close-popup-nhan-vien"
+                    class="size-5 text-gray-700 hover:text-red-500"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-full">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                          </svg>
+                    </button>
+                      
+                </div>
+
+                <!-- Body Popup -->
+                <div class="basis-11/12 h-full py-5 overflow-y-auto flex flex-col gap-4">
+                
+                    <!-- ImageGroup-->
+                    <div class="size-auto basis-1/4 flex gap-2">
+                        <div class="size-28 bg-slate-300 rounded-sm grid place-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                              </svg>
+                        </div>
+
+                          <input 
+                          class="translate-y-10"
+                          type="file"
+                          >
+                        </input>
+                          
+                    </div>
+
+                    <!-- InputGroup -->
+                    <div class="basis-3/4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+
+                        <!-- Input Item group -->
+                        <div class="space-y-2">
+                            <label 
+                            for="id"
+                            class="text-gray-800 font-medium"
+                            >Mã nhân viên</label>
+                            <input
+                            type="text" id="id"
+                            placeholder="Mã nhân viên tự động"
+                            class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                            >
+                            </input>
+                        </div>
+
+                        <!-- Input Item group -->
+                        <div class="space-y-2 col">
+                            <label 
+                            for="fullName"
+                            class="text-gray-800 font-medium"
+                            >Tên nhân viên
+                        </label>
+                        <span class="text-orange-500">*</span>
+                            <input
+                            type="text" id="fullName"
+                            placeholder="Nhập tên nhân viên"
+                            required
+                            class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                            >
+                            </input>
+                        </div>
+                        
+                        <!-- Input Item group -->
+                        <div class="space-y-2">
+                            <label 
+                            for="date" 
+                            class="text-gray-800 font-medium"
+                            >Ngày sinh</label>
+                            <!-- <input
+                            type="date"
+                            class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                            >
+                            </input> -->
+                           <div class="flex">
+                            <input 
+                            class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                            type="text" id="dateInput" placeholder="dd/mm/yyyy"/>
+                            <button 
+                            id="btnNgaySinh"
+                            class="h-[45px] w-[45px] bg-gray-50 pl-2 rounded-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
+                                  </svg>                        
+                            </button>
+                           </div>
+                        </div>
+
+                        <!-- Input Item group -->
+                        <div class="space-y-2">
+                            <label for="gioiTinh" class="text-gray-800 font-medium">Giới tính</label>
+                            <select
+                             id="gioiTinh"
+                            class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                            >
+                            <option value="">--Vui lòng chọn giới tính--</option>
+                            <option value="Men">Nam</option>
+                            <option value="Woman">Nữ</option>
+                            </select>
+                        </div>
+
+                        <!-- Input Item group -->
+                        <div class="space-y-2">
+                            <label for="address" class="text-gray-800 font-medium">Địa chỉ</label>
+                            <input
+                            type="text" id="address"
+                            placeholder="Vui lòng nhập địa chỉ"
+                            class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                            >
+                            </input>
+                        </div>
+
+                        <!-- Input Item group -->
+                        <div class="space-y-2">
+                            <label for="country" class="text-gray-800 font-medium">Quê quán</label>
+                            <input
+                            type="text" id="country"
+                            placeholder="Vui lòng nhập quê quán"
+                            class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                            >
+                            </input>
+                        </div>
+
+                        <!-- Input Item group -->
+                        <div class="space-y-2">
+                            <label for="phone_number" class="text-gray-800 font-medium">Điện thoại</label>
+                            <input
+                            type="number" id="phone_number"
+                            placeholder="Vui lòng nhập số điện thoại (+84)"
+                            class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                            >
+                            </input>
+                        </div>
+
+                        <!-- Input Item group -->
+                        <div class="space-y-2">
+                            <label for="MaBHXH" class="text-gray-800 font-medium">Mã BHXH</label>
+                            <input
+                            type="text" id="input-box"
+                            placeholder="Vui lòng nhập số điện thoại"
+                            autocomplete="off"
+                            oninput="displayResult(this.value)"
+                            class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                            >
+                            </input>
+
+                                <!-- Result box -->
+                                <div 
+                                id="result-box"
+                                class="bg-gray-400 rounded-lg border-gray-700"
+                                >
+                                </div>
+                            </div>
+
+                            <!-- Input Item group -->
+                            <div class="space-y-2">
+                                <label for="MaCCHN" class="text-gray-800 font-medium">Mã chứng chỉ hành nghề</label>
+                                <input
+                                type="text" id="input-box-2"
+                                placeholder="Vui lòng nhập mã chứng chỉ hành nghề"
+                                autocomplete="off"
+                                class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                                >
+                                </input>
+
+                                    <!-- Result box -->
+                                    <div 
+                                    id="result-box-2"
+                                    class="bg-gray-400 rounded-lg border-gray-700"
+                                    >
+                                    </div>
+                                </div>
+
+                            <!-- Input Item group -->
+                            <div class="space-y-2">
+                                <label 
+                                for="date" 
+                                class="text-gray-800 font-medium"
+                                >Ngày cấp chứng chỉ hành nghề</label>
+                                <input
+                                type="date" id="date"
+                                placeholder="dd-MM-yyyy"
+                                class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                                >
+                                </input>
+                                </div>
+
+                            <!-- Input Item group -->        
+                             <div class="space-y-2">
+                            <label for="NoiCapChungChiHanhNghe" class="text-gray-800 font-medium">Nơi cấp chứng chỉ hành nghề</label>
+                            <input
+                            type="text" id="NoiCapChungChiHanhNghe"
+                            placeholder="Nhập nơi cấp chứng chỉ hành nghề"
+                            class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                            >
+                            </input>
+                                </div>
+
+                             <!-- Input Item group -->        
+                        <div class="space-y-2">
+                            <label for="PhanViChuyenMon" class="text-gray-800 font-medium">Phạm vi chuyên môn</label>
+                            <input
+                            type="text" id="PhanViChuyenMon"
+                            placeholder="Nhập phạm vi chuyên môn"
+                            class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                            >
+                            </input>
+                        </div>
+
+                            <!-- Input Item group -->        
+                            <div class="space-y-2">
+                                <label for="VanBanPhanCong" class="text-gray-800 font-medium">Văn bản phân công</label>
+                                <input
+                                type="text" id="VanBanPhanCong"
+                                placeholder="Nhập văn bản phân công"
+                                class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                                >
+                                </input>
+                            </div>
+
+                            <!-- Input Item group -->
+                        <div class="space-y-2">
+                            <label for="khoa" class="text-gray-800 font-medium">Khoa</label>
+                            <select
+                             id="khoa"
+                            class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                            >
+                            <option value="">--Vui lòng chọn khoa--</option>
+                            <option value="Phụ sản">Phụ sản</option>
+                            <option value="Nhi động">Nhi đồng</option>
+                            </select>
+                        </div>
+        
+                            <!-- Input Item group -->
+                            <div class="space-y-2">
+                                <label for="ChucDanh" class="text-gray-800 font-medium">Chức danh</label>
+                                <select
+                                 id="ChucDanh"
+                                class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                                >
+                                <option value="">--Vui lòng chọn chức danh--</option>
+                                <option value="Trưởng khoa">Trưởng khoa</option>
+                                <option value="Y tá">Y tá</option>
+                                </select>
+                            </div>
+
+                            <!-- Input Item group -->
+                            <div class="space-y-2">
+                                <label for="NganHang" class="text-gray-800 font-medium">Ngân hàng</label>
+                                <select
+                                 id="NganHang"
+                                class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                                >
+                                <option value="">--Vui lòng chọn ngân hàng--</option>
+                                <option value="VietinBank">VietinBank</option>
+                                <option value="SaComBank">SaComBank</option>
+                                </select>
+                            </div>
+
+                            <!-- Input Item group -->        
+                            <div class="space-y-2">
+                                <label for="SoTaiKhoan" class="text-gray-800 font-medium">Số tài khoản</label>
+                                <input
+                                type="text" id="SoTaiKhoan"
+                                placeholder="Nhập số tài khoản"
+                                class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                                >
+                                </input>
+                            </div>
+
+                            <!-- Input Item group -->        
+                            <div class="space-y-2">
+                                <label for="MaSoThue" class="text-gray-800 font-medium">Mã số thuế</label>
+                                <input
+                                type="text" id="MaSoThue"
+                                placeholder="Nhập mã số thuế"
+                                class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                                >
+                                </input>
+                            </div>
+
+                             <!-- Input Item group -->        
+                             <div class="space-y-2 sm:col-span-2 lg:col-span-3">
+                                <label for="GhiChu" class="text-gray-800 font-medium">Ghi chú</label>
+                                <input
+                                type="text" id="GhiChu"
+                                placeholder="Nhập ghi chú"
+                                class="bg-gray-50 pl-2 rounded-sm w-full h-[45px]"
+                                >
+                                </input>
+                            </div>
+
+                            
+
+                    </div>
+
+                    <!-- Radius group -->
+                    <div class="w-full border-b-4 py-3 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+                        <div>
+                            <input type="checkbox" id="nhomBacSiKiThuatVien" value="Nhóm bác sĩ kĩ thuật viên">
+                            <label for="nhomBacSiKiThuatVien"> Nhóm bác sĩ kĩ thuật viên</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="NhomDuoc" value="Nhóm dược">
+                            <label for="NhomDuoc"> Nhóm dược</label> 
+                        </div>
+                        <div>
+                            <input type="checkbox" id="NhomKeToan" value="Nhóm kế toán">
+                            <label for="NhomKeToan"> Nhóm kế toán</label>
+                        </div>
+
+                        <div>
+                            <input type="checkbox" id="NhomKhac" value="Nhóm khác">
+                            <label for="NhomKhac"> Nhóm khác</label>
+                        </div>
+
+                    </div>
+
+                    <!-- Button Group -->
+                    <div class="w-full flex justify-end gap-2">
+                        <button 
+                        type="submit"
+                        class="bg-blue-800 text-white rounded-md font-bold px-4 py-2 hover:bg-blue-200 hover:text-gray-500">
+                            Lưu
+                        </button>
+                        <button class="bg-gray-50 text-slate-700 rounded-md font-bold px-4 py-2 hover:bg-red-500 hover:text-white">
+                            Đóng
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./utils/script/Popup.js"></script> 
+<script src="./utils/script/autocomplete.js"></script> 
+<script src="./utils/script/submitEvent.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<!-- Thêm script sau vào cuối file HTML trước thẻ đóng body -->
+<script>
+    const button = document.getElementById('btnNgaySinh');
+
+    button.addEventListener('click', function() {
+        flatpickr('#dateInput', {
+            dateFormat: 'd/m/Y',
+            inline: true, // Hiển thị lịch ngay dưới input
+            position: 'below', // Vị trí hiển thị lịch
+        });
+    });
+</script>
+<!-- <script src="../../utils/script/datepickerEvent.js"></script>  -->
+</html>
+
+<!-- Giờ em sẽ Demo -->
