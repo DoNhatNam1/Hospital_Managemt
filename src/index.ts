@@ -8,8 +8,8 @@ import path from 'path';
 const server = new Elysia()
 const client = express()
 
-// const ClientScreenDisplay = 'BankScreen'
-const ClientScreenDisplay = 'NhanVienScreen'
+const ClientScreenDisplay = 'BankScreen'
+// const ClientScreenDisplay = 'NhanVienScreen'
 
 
 server
