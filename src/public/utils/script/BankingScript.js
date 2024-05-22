@@ -9,20 +9,29 @@ var max_index = 0;
 var tabFilterClicked = false;
 var subTabFilterClicked = false;
 
-function fetchData() {
-    fetch('http://localhost:3001/api/nganhang/getall')
-        .then(response => response.json())
-        .then(data => {
-            // Update the UI with the new data
-            updateUI(data);
-        })
-        .catch(error => console.error('Error fetching data:', error));
-}
+// function fetchDataWhenBackEndIsBad() {
+//     fetch('http://localhost:3001/api/nganhang/getall')
+//         .then(response => response.json())
+//         .then(data => {
+//             updateUIWhenBackEndIsBad(data);
+//         })
+//         .catch(error => console.error('Error fetching data:', error));
+// }
+// function updateUIWhenBackEndIsBad(data) {
+//     array = data;
+//     array_length = array.length;
+//     max_index = parseInt(array_length / table_size);
 
-// Function to update UI with new data
-function updateUI(data) {
+//     if ((array_length % table_size) > 0) {                
+//         max_index++;
+//     }
+
+//     displayIndexButtons();
+// }
+
+
+function updateUI() {
     // Update the array with new data
-    array = data;
     array_length = array.length;
     max_index = parseInt(array_length / table_size);
 
@@ -109,6 +118,7 @@ function displayTableRow() {
         var tr = '<tr>' +
                  '<td>' + nganhang['TenNganHang'] + '</td>' +
                  '<td>' + nganhang['id'] + '</td>' +
+                 '<td><div class="d-flex gap-2 justify-content-center"><button class="btn btn-primary">Sửa</button><button class="btn btn-danger">Xoá</button></div></td>' +
                  '</tr>';
 
         $(".tbodycl").append(tr);
@@ -188,12 +198,23 @@ $("#btn_submit_model").on("click", function(){
         }
         return response.json();
     })
-    .then(() => {
+    .then((data) => {
         alert("Dữ liệu đã được thêm thành công!");
         $("#exampleModal").modal("hide");
         input_submit_id.val('');
         input_submit_name.val('');
-        fetchData();
+
+        // Trường hợp xử lý dữ liệu đầu vào api của backend tốt ta sẽ xử lý như sau:
+        let insertIndex = array.findIndex(item => item.id > data.id);
+        if (insertIndex === -1) {
+            array.push({ id: data.id, TenNganHang: data.TenNganHang });
+        } else {
+            array.splice(insertIndex, 0, { id: data.id, TenNganHang: data.TenNganHang });
+        }
+        updateUI();
+
+        // Trường hợp xử lý dữ liệu đầu vào api của backend xấu ta sẽ xử lý như sau:
+        // fetchDataWhenBackEndIsBad();
     })
     .catch(error => {
         alert(error.message);
@@ -205,3 +226,26 @@ $("#btn_submit_model").on("click", function(){
 
 // Main Script Runner
 preLoadCalculations();
+
+document.addEventListener('DOMContentLoaded', function() {
+    function adjustModalBody() {
+        var modalBody = document.querySelector('#exampleModal .modal-body');
+        var modalDialog = document.querySelector('#exampleModal .modal-dialog');
+
+        if (window.innerWidth < 720) {
+            modalBody.classList.add('flex-column');
+            modalDialog.style.maxWidth = '';
+        } else {
+            modalBody.classList.remove('flex-column');
+            modalDialog.style.maxWidth = '700px';
+        }
+    }
+
+    // Run on initial load
+    adjustModalBody();
+
+    // Run on window resize
+    window.addEventListener('resize', function() {
+        adjustModalBody();
+    });
+});

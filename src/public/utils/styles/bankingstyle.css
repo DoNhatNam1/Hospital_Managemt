@@ -80,3 +80,13 @@
     color: rgb(239 68 68);
 }
 
+.modal-body .d-flex {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .modal-body.d-flex .mb-3 {
+    flex: 1 1 100%;
+  }
+  .modal-body.d-flex .mb-3 .form-control {
+    width: 100%;
+  }

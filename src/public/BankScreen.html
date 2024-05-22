@@ -133,31 +133,33 @@
               type="text" class="form-control rounded-end-0" placeholder="Tìm kiếm thông tin" aria-label="Text input with dropdown button">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary dropdown-toggle rounded-start-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                <div class="dropdown-menu">
-                  <div class="container-fluid p-3">
-                    <div class="row pb-1">
-                      <div class="col-12 d-flex gap-2">
-                        <input id="tab_filter_input_id" class="form-control" type="text" placeholder="Theo mã ngân hàng"/>
-                        <input id="tab_filter_input_name" class="form-control" type="text" placeholder="Theo tên ngân hàng "/>
-                      </div>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <div class="container-fluid p-3">
+                        <div class="row pb-1">
+                            <div class="col-12 d-flex gap-2">
+                                <input id="tab_filter_input_id" class="form-control" type="text" placeholder="Theo mã ngân hàng"/>
+                                <input id="tab_filter_input_name" class="form-control" type="text" placeholder="Theo tên ngân hàng"/>
+                            </div>
+                        </div>
+                        <div class="row py-1">
+                            <div class="col-12 d-flex flex-column">
+                                <label for="status">Trạng thái</label>
+                                <select id="tab_filter_select" class="form-select" aria-label="Status select">
+                                    <option selected value="Active">Đang dùng</option>
+                                    <option value="Deactive">Đang ẩn</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row pt-1">
+                            <div class="col-12 py-1">
+                                <button id="sub_tab_filter_btn" class="btn btn-primary bg-navbar-black-blue">Tìm kiếm</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row py-1">
-                      <div class="col-12 d-flex flex-column">
-                        <label for="status">Trạng thái</label>
-                        <select id="tab_filter_select" class="form-select" aria-label="Status select">
-                          <option selected value="Active">Đang dùng</option>
-                          <option value="Deactive">Đang ẩn</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div class="row pt-1">
-                      <div class="col-12 py-1">
-                        <button id="sub_tab_filter_btn" class="btn btn-primary bg-navbar-black-blue">Tìm kiếm</button>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
+            </div>
+            
+
               <button id="tab_filter_btn" class="btn btn-outline-secondary ms-2">
                 <div class="w-100 h-100 d-grid place-content-center">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -187,7 +189,7 @@
         </div>
 
         <!-- Table Container -->
-        <div class="row px-4" id="tableDiv">
+        <div class="row" id="tableDiv">
           <div class="col-12">
             <table class="table table-striped table-hover table-bordered" style="width:100%">
               <thead class="table-primary">
@@ -198,10 +200,11 @@
                   <th class="text-center">
                     Mã ngân hàng
                   </th>
+                  <th class="text-center">
+                    Tùy chọn
+                  </th>
                 </tr>
-                <!-- <th class="text-center">
-                  Tùy chọn
-                </th> -->
+
               </thead>
               <tbody class="tbodycl" id="tbodyNH">
 
@@ -242,14 +245,14 @@
               <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm ngân hàng</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div id="model_body" class="modal-body d-flex gap-2">
               
               <div class="mb-3">
                 <label for="id" class="form-label">
                   <span>Mã ngân hàng</span>
                   <span class="text-red-500">*</span>
                 </label>
-                <input type="text" class="form-control" id="input_submit_id">
+                <input type="text" class="form-control" id="input_submit_id" placeholder="Nhập mã ngân hàng">
               </div>
 
               <div class="mb-3">
@@ -257,7 +260,7 @@
                   <span>Tên ngân hàng</span>
                   <span class="text-red-500">*</span>
                 </label>
-                <input type="text" class="form-control" id="input_submit_name">
+                <input type="text" class="form-control" id="input_submit_name" placeholder="Nhập tên ngân hàng">
               </div>
                <!-- Thêm phần hiển thị thông báo lỗi -->
                 <div id="error_message" class="text-danger"></div>
