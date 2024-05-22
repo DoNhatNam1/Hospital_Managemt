@@ -9,6 +9,7 @@
     "@elysiajs/cors": "^1.0.2",
     "@prisma/client": "5.13.0",
     "@types/express": "^4.17.21",
+    "bootstrap-icons": "^1.11.3",
     "elysia": "^1.0.15",
     "express": "^4.19.2"
   },

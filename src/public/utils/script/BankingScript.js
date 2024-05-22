@@ -1,5 +1,4 @@
 
-
 var array = [];
 var array_length = 0;
 var table_size = 10;
@@ -9,12 +8,17 @@ var current_index = 1;
 var max_index = 0;
 
 function preLoadCalculations() {
+
     fetch('http://localhost:3001/api/nganhang/getall')
         .then(response => response.json())
         .then(data => {
             array = data;
-            array_length = data.length;
-            max_index = Math.ceil(array_length / table_size);
+            array_length = array.length;
+            max_index = parseInt(array_length / table_size);
+
+            if ((array_length % table_size) > 0) {                
+                max_index++;
+            }
             displayIndexButtons();
         })
         .catch(error => console.error('Error fetching data:', error));
@@ -78,6 +82,13 @@ function indexPagination(index) {
     current_index = index;
     highLightIndexButton();
 }
+
+document.getElementById("table_size").addEventListener("change", function(){
+    table_size = parseInt(this.value);
+    current_index = 1;
+    start_index = 1;
+    preLoadCalculations();
+});
 
 
 // Main Script Runner

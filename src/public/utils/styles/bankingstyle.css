@@ -15,6 +15,11 @@
     padding-right: 0.8rem;
 }
 
+.mytw-2{
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
 .outline-none{
     outline: none!important;
     shadow: none!important;
@@ -43,7 +48,9 @@
 }
 
 #tableDiv{
-    min-height: 470px;
+    height: 470px;
+    max-height: 470px;
+    overflow-y: scroll;
 }
 
 .rounded-left-0{
@@ -57,5 +64,15 @@
 .rounded-x-0 {
     border-top-right-radius: 0;
     border-top-left-radius: 0;
+}
+
+.place-content-center{
+    place-content: center;
+}
+
+.table thead {
+    position: sticky;
+    top: 0; 
+    z-index: 100;
 }
 
