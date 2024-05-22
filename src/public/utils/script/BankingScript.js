@@ -181,11 +181,10 @@ $("#btn_submit_model").on("click", function(){
             TenNganHang: input_submit_name.val() 
         }),
     })
-    .then(response => {
+    .then(async response => {
         if (!response.ok) {
-            return response.json().then(data => {
-                throw new Error(data.message);
-            });
+            const data = await response.json();
+            throw new Error(data.message);
         }
         return response.json();
     })
