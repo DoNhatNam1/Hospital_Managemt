@@ -8,6 +8,7 @@ export async function getNganHangs() {
             select: {
                 id: true,
                 TenNganHang: true,
+                Status: true,
             }
         })
     } catch (e: unknown) {

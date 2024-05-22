@@ -130,11 +130,28 @@
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary dropdown-toggle rounded-start-0" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                  <div role="separator" class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Separated link</a>
+                  <div class="container-fluid p-3">
+                    <div class="row pb-1">
+                      <div class="col-12 d-flex gap-2">
+                        <input id="tab_filter_input_id" class="form-control" type="text" placeholder="Theo mã ngân hàng"/>
+                        <input id="tab_filter_input_name" class="form-control" type="text" placeholder="Theo tên ngân hàng "/>
+                      </div>
+                    </div>
+                    <div class="row py-1">
+                      <div class="col-12 d-flex flex-column">
+                        <label for="status">Trạng thái</label>
+                        <select id="tab_filter_select" class="form-select" aria-label="Status select">
+                          <option selected value="Active">Đang dùng</option>
+                          <option value="Deactive">Đang ẩn</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="row pt-1">
+                      <div class="col-12 py-1">
+                        <button id="sub_tab_filter_btn" class="btn btn-primary bg-navbar-black-blue">Tìm kiếm</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <button id="tab_filter_btn" class="btn btn-outline-secondary ms-2">
@@ -149,7 +166,7 @@
           </div>
 
           <div class="col d-flex justify-content-end gap-2">
-            <button type="button" class="btn btn-primary">
+            <button type="button" class="btn btn-primary bg-navbar-black-blue">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus mb-1" viewBox="0 0 16 16">
               <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"></path>
               </svg>

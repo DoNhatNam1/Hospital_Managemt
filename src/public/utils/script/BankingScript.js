@@ -6,19 +6,46 @@ var start_index = 1;
 var end_index = 0;
 var current_index = 1;
 var max_index = 0;
+var tabFilterClicked = false;
+var subTabFilterClicked = false;
 
 function preLoadCalculations() {
-
     fetch('http://localhost:3001/api/nganhang/getall')
         .then(response => response.json())
         .then(data => {
-            array = data;
+            // Lọc dữ liệu dựa trên trường tab_filter_input khi nhấp vào nút tab_filter_btn
+            if(!tabFilterClicked && !subTabFilterClicked){
+                array = data;
+            }
+            if (tabFilterClicked) {
+                var tab_filter_input = $("#tab_filter_input").val();
+                var temp_array = data.filter(function(object){
+                    return object.TenNganHang.toUpperCase().includes(tab_filter_input.toUpperCase())
+                        || object.id.toUpperCase().includes(tab_filter_input.toUpperCase());
+                });
+                array = temp_array;
+            }
+            // Lọc dữ liệu dựa trên các trường sub_tab_filter_input_id, tab_filter_input_name, tab_filter_select khi nhấp vào nút sub_tab_filter_btn
+            else if (subTabFilterClicked) {
+                var tab_filter_input_id = $("#tab_filter_input_id").val();
+                var tab_filter_input_name = $("#tab_filter_input_name").val();
+                var tab_filter_select = $("#tab_filter_select").val();
+
+                var temp_array = data.filter(function(object){
+                    return object.TenNganHang.toUpperCase().includes(tab_filter_input_name.toUpperCase())
+                        && object.id.toUpperCase().includes(tab_filter_input_id.toUpperCase())
+                        && object.Status === tab_filter_select;
+                });
+                array = temp_array;
+            }
+
             array_length = array.length;
             max_index = parseInt(array_length / table_size);
 
             if ((array_length % table_size) > 0) {                
                 max_index++;
             }
+
             displayIndexButtons();
         })
         .catch(error => console.error('Error fetching data:', error));
@@ -83,11 +110,31 @@ function indexPagination(index) {
     highLightIndexButton();
 }
 
-document.getElementById("table_size").addEventListener("change", function(){
-    table_size = parseInt(this.value);
+$("#table_size").on("change", function(){
+    table_size = parseInt($(this).val());
     current_index = 1;
     start_index = 1;
     preLoadCalculations();
+});
+
+$("#tab_filter_btn").on("click", function(){
+    tabFilterClicked = true;
+    subTabFilterClicked = false;
+    current_index = 1;
+    start_index = 1;
+    preLoadCalculations();
+});
+
+// Thêm sự kiện click cho nút "Tìm kiếm" sub_tab_filter_btn
+$("#sub_tab_filter_btn").on("click", function(){
+    tabFilterClicked = false;
+    subTabFilterClicked = true;
+    current_index = 1;
+    start_index = 1;
+    preLoadCalculations();
+
+    // Đóng dropdown khi nhấp nút "Tìm kiếm"
+    $(".dropdown-menu").removeClass("show");
 });
 
 
