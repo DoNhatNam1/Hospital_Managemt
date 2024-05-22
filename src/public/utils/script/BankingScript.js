@@ -9,6 +9,30 @@ var max_index = 0;
 var tabFilterClicked = false;
 var subTabFilterClicked = false;
 
+function fetchData() {
+    fetch('http://localhost:3001/api/nganhang/getall')
+        .then(response => response.json())
+        .then(data => {
+            // Update the UI with the new data
+            updateUI(data);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+// Function to update UI with new data
+function updateUI(data) {
+    // Update the array with new data
+    array = data;
+    array_length = array.length;
+    max_index = parseInt(array_length / table_size);
+
+    if ((array_length % table_size) > 0) {                
+        max_index++;
+    }
+
+    displayIndexButtons();
+}
+
 function preLoadCalculations() {
     fetch('http://localhost:3001/api/nganhang/getall')
         .then(response => response.json())
@@ -133,8 +157,50 @@ $("#sub_tab_filter_btn").on("click", function(){
     start_index = 1;
     preLoadCalculations();
 
-    // Đóng dropdown khi nhấp nút "Tìm kiếm"
     $(".dropdown-menu").removeClass("show");
+});
+
+// Thêm sự kiện click cho nút "Lưu" trong modal
+$("#btn_submit_model").on("click", function(){
+    var input_submit_id = $("#input_submit_id");
+    var input_submit_name = $("#input_submit_name");
+
+    // Kiểm tra xem cả hai input đã được nhập đủ hay không
+    if (input_submit_id.val().trim() === '' || input_submit_name.val().trim() === '') {
+        $("#error_message").text("Vui lòng nhập đủ thông tin Mã ngân hàng và Tên ngân hàng.");
+        return;
+    }
+
+    fetch('http://localhost:3001/api/nganhang/create', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+            id: input_submit_id.val(), 
+            TenNganHang: input_submit_name.val() 
+        }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(data => {
+                throw new Error(data.message);
+            });
+        }
+        return response.json();
+    })
+    .then(() => {
+        alert("Dữ liệu đã được thêm thành công!");
+        $("#exampleModal").modal("hide");
+        input_submit_id.val('');
+        input_submit_name.val('');
+        fetchData();
+    })
+    .catch(error => {
+        alert(error.message);
+        input_submit_id.val('');
+        input_submit_name.val('');
+    });
 });
 
 

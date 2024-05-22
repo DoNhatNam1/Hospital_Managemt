@@ -76,3 +76,7 @@
     z-index: 100;
 }
 
+.text-red-500 {
+    color: rgb(239 68 68);
+}
+

@@ -13,6 +13,8 @@
 </head>
 <body>
     <div class="container-fluid">
+
+      <!-- NavBar -->
         <div class="row bg-navbar-black-blue">
             <nav class="navbar navbar-expand-xl bg-navbar-black-blue">
                 <div class="container-xxl">
@@ -121,6 +123,8 @@
                 </div>
               </nav>
         </div>
+
+        <!-- Search And Buttons Container -->
         <div class="row px-4 py-2">
           <div class="col-7">
             <div class="input-group">
@@ -166,7 +170,7 @@
           </div>
 
           <div class="col d-flex justify-content-end gap-2">
-            <button type="button" class="btn btn-primary bg-navbar-black-blue">
+            <button type="button" class="btn btn-primary bg-navbar-black-blue" data-bs-toggle="modal" data-bs-target="#exampleModal">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus mb-1" viewBox="0 0 16 16">
               <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"></path>
               </svg>
@@ -181,6 +185,8 @@
           </div>
 
         </div>
+
+        <!-- Table Container -->
         <div class="row px-4" id="tableDiv">
           <div class="col-12">
             <table class="table table-striped table-hover table-bordered" style="width:100%">
@@ -203,6 +209,8 @@
             </table>
           </div>
         </div>
+
+        <!-- Pagination -->
         <div class="row px-4 my-1"> 
           <div class="page_limit">
             <select id="table_size" class="p-2">
@@ -213,6 +221,8 @@
             </select>
           </div>
         </div>
+
+        <!-- Footer -->
         <div class="row px-4">
           <div class="d-flex justify-content-between">
             <span class="footer_span">
@@ -223,6 +233,43 @@
             </div>
           </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm ngân hàng</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              
+              <div class="mb-3">
+                <label for="id" class="form-label">
+                  <span>Mã ngân hàng</span>
+                  <span class="text-red-500">*</span>
+                </label>
+                <input type="text" class="form-control" id="input_submit_id">
+              </div>
+
+              <div class="mb-3">
+                <label for="TenNganHang" class="form-label">
+                  <span>Tên ngân hàng</span>
+                  <span class="text-red-500">*</span>
+                </label>
+                <input type="text" class="form-control" id="input_submit_name">
+              </div>
+               <!-- Thêm phần hiển thị thông báo lỗi -->
+                <div id="error_message" class="text-danger"></div>
+            </div>
+            <div class="modal-footer">
+              <button id="btn_submit_model" type="button" class="btn btn-primary">Lưu</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
 

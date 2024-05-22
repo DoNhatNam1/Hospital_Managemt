@@ -31,14 +31,29 @@ export async function getNganHangById(id: string) {
 
 export async function createNganHang(nganhang: any) {
     try {
+        const existingNganHang = await prisma.tbNganHang.findUnique({
+            where: {
+                id: nganhang.id
+            }
+        });
+
+        if (existingNganHang) {
+            throw new Error("Mã ngân hàng đã tồn tại trong dữ liệu của bạn. Vui lòng nhập mã ngân hàng khác!");
+        }
+
         return await prisma.tbNganHang.create({
             data: {
+                id: nganhang.id,
                 TenNganHang: nganhang.TenNganHang,
             }
-        })
+        });
         
-    } catch (e: unknown) {
-        console.log(`Error getting ngan hang: ${e}`)
+    } catch (e: any) {
+        if (e.message === "Mã ngân hàng đã tồn tại trong dữ liệu của bạn. Vui lòng nhập mã ngân hàng khác!") {
+            throw e; // Ném lỗi trùng ID
+        } else {
+            throw new Error("Lỗi xảy ra khi tạo dữ liệu ngân hàng.");
+        }
     }
 }
 
