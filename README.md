@@ -1,15 +1,27 @@
-# Elysia with Bun runtime
+# Chào mừng bạn đến với Website quản lý bệnh viện bằng HTML, Bootstrap, Jquery, Elysia, Prisma, MySQL
 
-## Getting Started
-To get started with this template, simply paste this command into your terminal:
+## Cấu trúc dự án
++ Backend: nằm ở gốc dư án và bắt đàu tại file index.ts
++ FrontEnd: Nằm trong folder /public
+
+## Cài đặt mỗi trường, yêu cầu:
++ Có [NodeJS](https://nodejs.org/en/download/prebuilt-installer)
++ Có [Bun](https://bun.sh/docs/installation)
++ Có [MySQL](https://dev.mysql.com/downloads/installer/)
++ Có [XamPP](https://www.apachefriends.org/download.html)
++ Tạo database tương ứng với dữ liệu trong file .env, [Xem Thêm](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/connect-your-database-typescript-mysql)
+
+## Khởi đầu
+Sau khi clone dự án và setup môi trường xong xuôi, mở terminal ngay folder gốc của dự án rồi gõ lệnh sau:
 ```bash
-bun create elysia ./elysia-example
+bun i
 ```
 
 ## Development
-To start the development server run:
+Khi cài đặt xong các package, ta sẽ gõ tiếp câu lệnh phía dưới:
 ```bash
 bun run dev
 ```
 
-Open http://localhost:3000/ with your browser to see the result.
+Mở http://localhost:3001/ vào trình duyệt để xem kết quả backend.
+Mở http://localhost:3000/NganHang.html vào trình duyệt để xem kết quả frontend.
