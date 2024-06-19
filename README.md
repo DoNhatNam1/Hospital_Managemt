@@ -1,27 +1,27 @@
-# Chào mừng bạn đến với Website quản lý bệnh viện bằng HTML, Bootstrap, Jquery, Elysia, Prisma, MySQL
+# Welcome to the hospital management website using HTML, Bootstrap, Jquery, Elysia, Prisma, MySQL
 
-## Cấu trúc dự án
-+ Backend: nằm ở gốc dư án và bắt đàu tại file index.ts
-+ FrontEnd: Nằm trong folder /public
+## Project structure
++ Backend: located at the root of the project and starts at the index.ts file
++ FrontEnd: Located in folder /public
 
-## Cài đặt mỗi trường, yêu cầu:
-+ Có [NodeJS](https://nodejs.org/en/download/prebuilt-installer)
-+ Có [Bun](https://bun.sh/docs/installation)
-+ Có [MySQL](https://dev.mysql.com/downloads/installer/)
-+ Có [XamPP](https://www.apachefriends.org/download.html)
-+ Tạo database tương ứng với dữ liệu trong file .env, [Xem Thêm](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/connect-your-database-typescript-mysql)
+## Setting each field, requires:
++ [NodeJS](https://nodejs.org/en/download/prebuilt-installer)
++ [Bun](https://bun.sh/docs/installation)
++ [MySQL](https://dev.mysql.com/downloads/installer/)
++ [XamPP](https://www.apachefriends.org/download.html)
++ Create a database corresponding to the data in the .env file, [More](https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases/connect-your-database-typescript-mysql)
 
-## Khởi đầu
-Sau khi clone dự án và setup môi trường xong xuôi, mở terminal ngay folder gốc của dự án rồi gõ lệnh sau:
+## Getting Started
+After cloning the project and setting up the environment, open the terminal right in the project's root folder and type the following command:
 ```bash
 bun i
 ```
 
 ## Development
-Khi cài đặt xong các package, ta sẽ gõ tiếp câu lệnh phía dưới:
+Once we have finished installing the packages, we will type the command below:
 ```bash
 bun run dev
 ```
 
-Mở http://localhost:3001/ vào trình duyệt để xem kết quả backend.
-Mở http://localhost:3000/NganHang.html vào trình duyệt để xem kết quả frontend.
+Open http://localhost:3001/ and go to the browser to see the backend results.
+Open http://localhost:3000/NganHang.html and go to the browser to see the frontend results.
